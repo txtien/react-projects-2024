@@ -1,0 +1,16 @@
+:root {
+  --background-color: #002333;
+  --primary-color: #00ff84;
+  --secondary-color: #868686;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.app-link {
+  background-color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  color: var(--background-color);
+  border-radius: 8px;
+}
