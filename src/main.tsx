@@ -10,6 +10,7 @@ import { checkboxAnatomy } from "@chakra-ui/anatomy";
 import { createMultiStyleConfigHelpers, defineStyle } from "@chakra-ui/react";
 import MovieReview from "./movie-review/index.tsx";
 import Layout from "./layout.tsx";
+import { NotFound } from "./pages/not-found/index.tsx";
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(checkboxAnatomy.keys);
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       { path: "/movie-review", element: <MovieReview /> },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
