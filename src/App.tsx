@@ -1,55 +1,172 @@
-import { Link } from "react-router-dom";
 import "./App.css";
 import {
-  Box, Card,
-  CardBody,
-  CardFooter,
-  Divider,
-  Grid,
-  Heading,
-  Stack,
-  Text
-} from "@chakra-ui/react";
+  ArrowRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
+import DemoImage from "./assets/project-demo.png";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string;
+  url?: string;
+}
+
+const projects: Project[] = [
+  {
+    title: "Movie Rating",
+    description: "A place to rate and review movies",
+    image: DemoImage,
+    technologies: ["React", "Typescript", "Chakra UI"],
+    url: "/movie-review",
+  },
+  {
+    title: "Todo App",
+    description: "Todo app that helps you manage your tasks",
+    image: DemoImage,
+    technologies: ["React", "Typescript", "Chakra UI"],
+    url: "/todo",
+  },
+  {
+    title: "Document Management",
+    description:
+      "Document management is a system or process used to capture, track and store electronic documents such as PDFs, word processing files and digital images",
+    image: DemoImage,
+    technologies: ["Angular", "Typescript", "Material UI"],
+  },
+];
 
 function App() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const toNextProject = () => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const toPreviousProject = () => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
-    <Box padding={"2rem"}>
-      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-        <Card maxW="sm">
-          <CardBody>
-            <Stack mt="6" spacing="3">
-              <Heading size="md">Todo App</Heading>
-              <Text>Todo app</Text>
-            </Stack>
-          </CardBody>
-          <Divider />
-          <CardFooter display={"flex"} justifyContent={"flex-end"}>
-            <Link to="/todo" className="app-link">
-              Try it
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card maxW="sm">
-          <CardBody>
-            <Stack mt="6" spacing="3">
-              <Heading size="md">Movie Review App</Heading>
-              <Text>Movie Review App</Text>
-            </Stack>
-          </CardBody>
-          <Divider />
-          <CardFooter display={"flex"} justifyContent={"flex-end"}>
-            <Link to="/movie-review" className="app-link">
-              Try it
-            </Link>
-          </CardFooter>
-        </Card>
-        {/* <GridItem w="100%" h="10" bg="blue.500" />
-      <GridItem w="100%" h="10" bg="blue.500" />
-      <GridItem w="100%" h="10" bg="blue.500" />
-      <GridItem w="100%" h="10" bg="blue.500" /> */}
-      </Grid>
-    </Box>
+    <div className="projectPageWrap">
+      <div className="pageHeading">
+        <h1 className="pageTitle">Projects</h1>
+        <div className="switchIcon">
+          <span
+            className="icon"
+            role="button"
+            onClick={() => toPreviousProject()}
+          >
+            <ChevronLeftIcon />
+          </span>
+          <span className="icon" role="button" onClick={() => toNextProject()}>
+            <ChevronRightIcon />
+          </span>
+        </div>
+      </div>
+
+      {/* Card */}
+      <div className="projectWrap">
+        {projects.map((project, index) => (
+          <ProjectCard key={index} {...project} />
+        ))}
+      </div>
+
+      {/* Slider */}
+      <div className="sliderWrap">
+        {projects.map((project, index) => (
+          <SliderCard
+            key={index}
+            index={index + 1}
+            projectCount={projects.length}
+            show={index === activeIndex}
+            {...project}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
 export default App;
+
+interface SliderCardProps extends Project {
+  index: number;
+  projectCount: number;
+  show: boolean;
+}
+
+const SliderCard = ({
+  index,
+  projectCount,
+  image,
+  title,
+  description,
+  technologies,
+  url,
+  show,
+}: SliderCardProps) => {
+  return (
+    <div
+      className="card"
+      style={{
+        display: show ? "flex" : "none",
+      }}
+    >
+      <div className="info">
+        <div className="index">
+          {index.toString().padStart(2, "0")}/
+          {projectCount.toString().padStart(2, "0")}
+        </div>
+        <div className="project-info">
+          <div className="section-title">Project</div>
+          <h4 className="title">{title}</h4>
+          <p className="description">{description}</p>
+        </div>
+        <div className="tech-info">
+          <h4 className="tech-title">Technologies</h4>
+          <ul className="techs">
+            {technologies.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="demo-image-block">
+        <img src={image} alt="demo" className="demo-image" />
+        {url ? (
+          <Link to={url} className="tryBtn">
+            <ArrowRightIcon />
+          </Link>
+        ) : (
+          <p className="comingSoonTag">Coming soon</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const ProjectCard = ({ title, description, url }: Project) => {
+  return (
+    <div className="projectCard">
+      <h4 className="title">{title}</h4>
+      <p className="description">{description}</p>
+      {url ? (
+        <Link to={url} className="tryBtn">
+          <span>Try It</span>
+          <ChevronRightIcon />
+        </Link>
+      ) : (
+        <p className="comingSoonTag">Coming soon</p>
+      )}
+    </div>
+  );
+};
