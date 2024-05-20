@@ -1,8 +1,7 @@
 import "./App.css";
 import {
-  ArrowRightIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
+  ArrowForwardIcon, ChevronLeftIcon,
+  ChevronRightIcon
 } from "@chakra-ui/icons";
 import DemoImage from "./assets/project-demo.png";
 import { useState } from "react";
@@ -61,13 +60,13 @@ function App() {
         <h1 className="pageTitle">Projects</h1>
         <div className="switchIcon">
           <span
-            className="icon"
+            className="icon left"
             role="button"
             onClick={() => toPreviousProject()}
           >
             <ChevronLeftIcon />
           </span>
-          <span className="icon" role="button" onClick={() => toNextProject()}>
+          <span className="icon right" role="button" onClick={() => toNextProject()}>
             <ChevronRightIcon />
           </span>
         </div>
@@ -144,7 +143,7 @@ const SliderCard = ({
         <img src={image} alt="demo" className="demo-image" />
         {url ? (
           <Link to={url} className="tryBtn">
-            <ArrowRightIcon />
+            <ArrowForwardIcon />
           </Link>
         ) : (
           <p className="comingSoonTag">Coming soon</p>
@@ -162,7 +161,7 @@ const ProjectCard = ({ title, description, url }: Project) => {
       {url ? (
         <Link to={url} className="tryBtn">
           <span>Try It</span>
-          <ChevronRightIcon />
+          <ArrowForwardIcon />
         </Link>
       ) : (
         <p className="comingSoonTag">Coming soon</p>

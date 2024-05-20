@@ -1,9 +1,8 @@
 .comingSoonTag {
-  opacity: 0.8;
   color: #333;
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 9999px;
+  background-color: #fabc04;
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -79,7 +78,7 @@
       }
 
       .comingSoonTag {
-        background-color: #b1b1b1;
+        border-radius: 12px;
       }
     }
   }
@@ -124,6 +123,18 @@
           padding: 0.5rem;
           font-size: 1.5rem;
           border-radius: 9999px;
+
+          &:hover {
+            transition: all 0.3s ease;
+            transform: scale(1.05);
+            opacity: 0.8;
+            &.right {
+              transform: translateX(4px);
+            }
+            &.left {
+              transform: translateX(-4px);
+            }
+          }
         }
       }
     }
@@ -148,7 +159,7 @@
           .index {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #b1b1b1;
+            color: #fff;
           }
 
           .project-info {
@@ -229,10 +240,16 @@
             align-items: center;
             gap: 4px;
             margin-top: 1rem;
+
+            &:hover {
+              transform: scale(1.05) translateX(4px);
+              transition: all 0.3s ease;
+              opacity: 0.8;
+            }
           }
 
           .comingSoonTag {
-            background-color: beige;
+            border-radius: 9999px;
           }
         }
       }
