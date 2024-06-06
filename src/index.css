@@ -14,3 +14,9 @@ body {
   color: var(--background-color);
   border-radius: 8px;
 }
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
