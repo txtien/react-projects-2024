@@ -1,0 +1,61 @@
+.movie-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: #f5f5f5;
+}
+
+.movie-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #002333;
+  margin: 1rem 0;
+  border-bottom: 1px solid orange;
+  padding-bottom: 0.5rem;
+}
+
+.search-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-field {
+  position: relative;
+  width: 40%;
+}
+
+.search-field .icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: #333;
+}
+
+.movie-card-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@media screen and (min-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .movie-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
