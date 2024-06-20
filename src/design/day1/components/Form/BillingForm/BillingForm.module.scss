@@ -1,0 +1,26 @@
+.payment {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  .paymentField {
+    display: inline-flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .paymentLabel {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  img.icon {
+    height: 24px;
+    width: auto;
+
+    &.paypal {
+        height: 16px;
+    }
+  }
+}

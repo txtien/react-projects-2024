@@ -11,6 +11,7 @@ import { createMultiStyleConfigHelpers, defineStyle } from "@chakra-ui/react";
 import MovieReview from "./movie-review/index.tsx";
 import Layout from "./layout.tsx";
 import { NotFound } from "./pages/not-found/index.tsx";
+import { DesignDay1 } from "./design/day1/index.tsx";
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(checkboxAnatomy.keys);
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/todo", element: <Todo /> },
       { path: "/movie-review", element: <MovieReview /> },
+      { path: "/design/day1", element: <DesignDay1 /> },
     ],
   },
   { path: "*", element: <NotFound /> },

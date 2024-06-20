@@ -8,11 +8,13 @@ import { SearchIcon } from "lucide-react";
 import { MovieCard } from "./components/card/Card";
 
 const MovieReview = () => {
-  const [params, setParams] = useState({
-    title: "",
-  });
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  
+  // const [params, setParams] = useState({
+  //   title: "",
+  // });
 
+  const [movies, setMovies] = useState<IMovie[]>([]);
+ 
   useEffect(() => {
     getMovies().then((res) => {
       setMovies(res);

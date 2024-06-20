@@ -1,0 +1,24 @@
+.formTitle {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.form {
+  padding-left: 40px;
+  padding-right: 80px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.fullField {
+    grid-column: span 6 / span 6;
+}
+.halfField {
+    grid-column: span 3 / span 3;
+}

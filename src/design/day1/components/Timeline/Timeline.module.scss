@@ -1,0 +1,82 @@
+@import "../../index.module.scss";
+
+.timeline {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40px;
+  padding-top: 40px;
+  margin-bottom: 2rem;
+}
+
+.timeline :global(.li) {
+  width: 100%;
+  text-decoration: none;
+  list-style: none;
+
+  .wrapLine {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &:not(:last-child) {
+    .wrapLine::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      background-color: var(--d1-disabled);
+    }
+  }
+}
+
+.timelineItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--d1-primary-color);
+  position: relative;
+
+  .timelineCircle {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--d1-disabled);
+    color: var(--d1-disabled);
+    border-radius: 9999px;
+    position: relative;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.active {
+    .timelineCircle {
+      border: 1px solid var(--d1-primary-color);
+    }
+
+    .timelineCircle::after {
+      content: "";
+      display: block;
+      background-color: var(--d1-primary-color);
+      width: 60%;
+      height: 60%;
+      border-radius: 9999px;
+    }
+  }
+
+  &.passed {
+    color: var(--d1-primary-color);
+
+    .wrapLine {
+      &::after {
+        background-color: var(--d1-primary-color);
+      }
+    }
+
+    .timelineCircle {
+      border: 1px solid var(--d1-primary-color);
+    }
+  }
+}
