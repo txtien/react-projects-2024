@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./index.module.scss";
 import BrandImage from "./images/brand.png";
 import { Timeline } from "./components/Timeline/Timeline";
@@ -5,6 +6,7 @@ import { Timeline } from "./components/Timeline/Timeline";
 import { useState } from "react";
 import { ContactForm } from "./components/Form/ContactForm/ContactForm";
 import { BillingForm } from "./components/Form/BillingForm/BillingForm";
+import { Confirmation } from "./components/Form/Confirmation/Confirmation";
 
 const TimeLineItems = [
   { id: 1, index: 1, name: "Shipping" },
@@ -14,6 +16,10 @@ const TimeLineItems = [
 
 export const DesignDay1 = () => {
   const [activeTimeline, setActiveTimeline] = useState(1);
+  const [formData, setFormData] = useState<any>({
+    contactData: null,
+    billingData: null,
+  });
 
   return (
     <div className={styles.d1Wrapper}>
@@ -21,13 +27,26 @@ export const DesignDay1 = () => {
         <div className={styles.d1form}>
           <Timeline items={TimeLineItems} activeIndex={activeTimeline} />
           <ContactForm
-            onNext={() => setActiveTimeline(2)}
+            onNext={(data: any) => {
+              setFormData({ ...formData, contactData: data });
+              setActiveTimeline(2);
+            }}
             show={activeTimeline === 1}
           />
           <BillingForm
+            formData={formData}
             show={activeTimeline === 2}
-            onNext={() => {}}
+            onNext={(data: any) => {
+              setFormData({ ...formData, billingData: data });
+              setActiveTimeline(3);
+            }}
             onBack={() => setActiveTimeline(1)}
+          />
+          <Confirmation
+            formData={formData}
+            show={activeTimeline === 3}
+            onSubmit={() => {}}
+            onBack={() => setActiveTimeline(2)}
           />
         </div>
         <div className={styles.d1brand}>

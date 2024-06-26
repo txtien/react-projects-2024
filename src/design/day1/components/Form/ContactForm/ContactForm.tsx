@@ -7,7 +7,7 @@ import { useState } from "react";
 
 interface Props {
   show: boolean;
-  onNext: () => void;
+  onNext: (data: any) => void;
 }
 
 export const ContactForm = ({ show, onNext }: Props) => {
@@ -43,7 +43,7 @@ export const ContactForm = ({ show, onNext }: Props) => {
       return;
     }
 
-    onNext();
+    onNext(formData);
   };
 
   return (

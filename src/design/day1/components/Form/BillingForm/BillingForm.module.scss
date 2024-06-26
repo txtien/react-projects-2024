@@ -14,13 +14,19 @@
     gap: 8px;
     align-items: center;
   }
+}
 
-  img.icon {
-    height: 24px;
-    width: auto;
+img.icon {
+  height: 24px;
+  width: auto;
 
-    &.paypal {
-        height: 16px;
-    }
+  &.paypal {
+    height: 16px;
   }
+}
+
+.agree {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: var(--d1-primary-color);
 }
