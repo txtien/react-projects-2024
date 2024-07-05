@@ -52,7 +52,11 @@ export const Confirmation = ({ formData, show, onSubmit, onBack }: Props) => {
               </Button>
             </div>
           </div>
-          <Button className={styles.confirmBtn} variant="primary">
+          <Button
+            className={styles.confirmBtn}
+            onClick={onSubmit}
+            variant="primary"
+          >
             Confirm
           </Button>
         </div>

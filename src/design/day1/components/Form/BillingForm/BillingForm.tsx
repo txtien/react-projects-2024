@@ -77,11 +77,30 @@ export const BillingForm = ({ show, onNext, onBack }: Props) => {
         const value = cardForm[name as keyof typeof cardForm];
         if (!value) {
           err[name] = "Vui lòng nhập";
+        } else if (name === "cardNumber") {
+          const isAllNumber = /^\d+$/.test(value);
+          if (!isAllNumber) {
+            err[name] = "Card number must be number";
+          }
+        } else if (name === "expiration") {
+          const isExpiration = /^\d{2}\/\d{2}$/.test(value);
+          if (!isExpiration) {
+            err[name] = "Invalid expiration date";
+          }
+        } else if (name === "cvv") {
+          const isCVV = /^\d{3}$/.test(value);
+          if (!isCVV) {
+            err[name] = "Invalid CVV";
+          }
         }
       }
     } else {
       if (paypalForm.paypalEmail === "") {
         err["paypalEmail"] = "vui lòng nhập";
+      }
+      const isEmail = /\S+@\S+\.\S+/.test(paypalForm.paypalEmail);
+      if (!isEmail) {
+        err["paypalEmail"] = "Invalid email";
       }
     }
 
@@ -204,20 +223,13 @@ export const BillingForm = ({ show, onNext, onBack }: Props) => {
       <div className={styles.agree}>
         By Click “Confirm Payment” I agree to the companies term of services
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginTop: "1rem",
-          gap: "1rem",
-        }}
-      >
+      <div className={styles.buttonWrap}>
         <Button variant="secondary" onClick={onBack}>
           <ChevronLeft />
           <span style={{ marginLeft: "8px" }}>Back</span>
         </Button>
         <Button variant="primary" onClick={handleNext}>
-          <span style={{ marginRight: "8px" }}>Confirm Payment: $14.88</span>
+          <span style={{ marginRight: "8px" }}>Confirm $14.88</span>
           <ChevronRight />
         </Button>
       </div>

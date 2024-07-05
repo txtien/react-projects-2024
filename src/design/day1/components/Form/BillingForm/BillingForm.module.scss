@@ -30,3 +30,14 @@ img.icon {
   margin-bottom: 1rem;
   color: var(--d1-primary-color);
 }
+
+.buttonWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
+}

@@ -32,6 +32,10 @@
 
   .d1form {
     width: 50%;
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
 
   .d1brand {
@@ -77,6 +81,10 @@
           width: auto;
         }
       }
+    }
+
+    @media screen and (max-width: 1024px) {
+      display: none;
     }
   }
 }
